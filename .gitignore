@@ -1,6 +1,20 @@
-dist/
 deploy_versions/
 .temp/
 .rn_temp/
-node_modules/
 .DS_Store
+
+# dependencies
+/node_modules
+/npm-debug.log*
+/yarn-error.log
+/package-lock.json
+
+# production
+/dist
+
+# misc
+.DS_Store
+
+# umi
+.umi
+.umi-production
