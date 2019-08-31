@@ -1,3 +1,5 @@
+const path = require('path')
+
 const config = {
   projectName: 'taro-cnode',
   date: '2019-8-31',
@@ -13,24 +15,31 @@ const config = {
     babel: {
       sourceMap: true,
       presets: [
-        ['env', {
-          modules: false
-        }]
+        [
+          'env',
+          {
+            modules: false
+          }
+        ]
       ],
-      plugins: [
-        'transform-decorators-legacy',
-        'transform-class-properties',
-        'transform-object-rest-spread'
-      ]
+      plugins: ['transform-decorators-legacy', 'transform-class-properties', 'transform-object-rest-spread']
     }
   },
-  defineConstants: {
-  },
+  defineConstants: {},
   copy: {
-    patterns: [
-    ],
-    options: {
-    }
+    patterns: [],
+    options: {}
+  },
+  alias: {
+    '@': path.resolve(__dirname, '..', 'src'),
+    '@api': path.resolve(__dirname, '..', 'src/api'),
+    '@components': path.resolve(__dirname, '..', 'src/components'),
+    '@models': path.resolve(__dirname, '..', 'src/models'),
+    '@config': path.resolve(__dirname, '..', 'src/config'),
+    '@utils': path.resolve(__dirname, '..', 'src/utils'),
+    '@assets': path.resolve(__dirname, '..', 'src/assets'),
+    '@package': path.resolve(__dirname, '..', 'package.json'),
+    '@project': path.resolve(__dirname, '..', 'project.config.json')
   },
   weapp: {
     module: {
@@ -38,18 +47,12 @@ const config = {
         autoprefixer: {
           enable: true,
           config: {
-            browsers: [
-              'last 3 versions',
-              'Android >= 4.1',
-              'ios >= 8'
-            ]
+            browsers: ['last 3 versions', 'Android >= 4.1', 'ios >= 8']
           }
         },
         pxtransform: {
           enable: true,
-          config: {
-
-          }
+          config: {}
         },
         url: {
           enable: true,
@@ -75,11 +78,7 @@ const config = {
         autoprefixer: {
           enable: true,
           config: {
-            browsers: [
-              'last 3 versions',
-              'Android >= 4.1',
-              'ios >= 8'
-            ]
+            browsers: ['last 3 versions', 'Android >= 4.1', 'ios >= 8']
           }
         },
         cssModules: {
@@ -94,7 +93,7 @@ const config = {
   }
 }
 
-module.exports = function (merge) {
+module.exports = function(merge) {
   if (process.env.NODE_ENV === 'development') {
     return merge({}, config, require('./dev'))
   }
