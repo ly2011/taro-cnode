@@ -49,7 +49,7 @@ async function fetch(options) {
       const { data, success } = res.data
       return {
         data,
-        tab: payload.tab,
+        // tab: payload.tab,
         success
       }
     })

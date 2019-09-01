@@ -50,7 +50,9 @@ export default class Home extends Component {
 
   componentWillMount() {}
 
-  componentDidMount() {}
+  componentDidMount() {
+    console.log('home index mounted...')
+  }
 
   componentWillUnmount() {}
 

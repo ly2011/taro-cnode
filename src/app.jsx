@@ -23,7 +23,7 @@ const store = dvaApp.getStore()
 
 class App extends Component {
   config = {
-    pages: ['pages/home/index', 'pages/me/index'],
+    pages: ['pages/home/index', 'pages/me/index', 'pages/detail/index'],
     window: {
       backgroundTextStyle: 'light',
       navigationBarBackgroundColor: '#fff',

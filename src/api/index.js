@@ -10,3 +10,9 @@ export default function getTopicByTabName(params) {
     }
   })
 }
+
+export function getTopicById(id) {
+  return get({
+    url: `${baseUrl}topic/${id}`
+  })
+}

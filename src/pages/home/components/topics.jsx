@@ -51,8 +51,11 @@ class Topics extends Component {
   onEndReached = () => {
     this.loadMore()
   }
-  onItemPressed = (title, content) => {
-    console.log('我被点击了')
+  onItemPressed = id => {
+    console.log('我被点击了', id)
+    return Taro.navigateTo({
+      url: `../detail/index?id=${id}`
+    })
   }
   // 加载更多
   loadMore = () => {
@@ -67,6 +70,7 @@ class Topics extends Component {
     this.loadData(page, tab)
   }
   componentDidMount() {
+    console.log('mounted...')
     this.initData()
   }
   render() {
@@ -84,7 +88,7 @@ class Topics extends Component {
         thumb={item.author.avatar_url}
         className={styles.card}
         onClick={() => {
-          this.onItemPressed(item.title, item.content)
+          this.onItemPressed(item.id)
         }}
       >
         {item.title}
