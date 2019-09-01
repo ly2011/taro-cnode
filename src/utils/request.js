@@ -46,10 +46,11 @@ async function fetch(options) {
     header
   })
     .then(async res => {
-      const { data } = res.data
+      const { data, success } = res.data
       return {
         data,
-        tab: payload.tab
+        tab: payload.tab,
+        success
       }
     })
     .catch(err => {

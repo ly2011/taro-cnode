@@ -4,8 +4,9 @@ import { Provider } from '@tarojs/redux'
 import dva from '@/utils/dva'
 import models from '@/models'
 
-import Index from './pages/index'
+import Home from './pages/home'
 
+import './custom-variables.scss'
 import './app.scss'
 
 // 如果需要在 h5 环境中开启 React Devtools
@@ -16,38 +17,55 @@ import './app.scss'
 
 const dvaApp = dva.createApp({
   initialState: {},
-  models: models,
+  models: models
 })
 const store = dvaApp.getStore()
 
 class App extends Component {
-
   config = {
-    pages: [
-      'pages/index/index'
-    ],
+    pages: ['pages/home/index', 'pages/me/index'],
     window: {
       backgroundTextStyle: 'light',
       navigationBarBackgroundColor: '#fff',
-      navigationBarTitleText: 'WeChat',
+      navigationBarTitleText: 'CNode 社区',
       navigationBarTextStyle: 'black'
+    },
+    tabBar: {
+      color: '#666',
+      selectedColor: '#E93B3D',
+      backgroundColor: '#fafafa',
+      borderStyle: 'white',
+      list: [
+        {
+          pagePath: 'pages/home/index',
+          iconPath: './assets/img/tab-bar/home.png',
+          selectedIconPath: './assets/img/tab-bar/home-active.png',
+          text: '首页'
+        },
+        {
+          pagePath: 'pages/me/index',
+          iconPath: './assets/img/tab-bar/user.png',
+          selectedIconPath: './assets/img/tab-bar/user-active.png',
+          text: '我的'
+        }
+      ]
     }
   }
 
-  componentDidMount () {}
+  componentDidMount() {}
 
-  componentDidShow () {}
+  componentDidShow() {}
 
-  componentDidHide () {}
+  componentDidHide() {}
 
-  componentDidCatchError () {}
+  componentDidCatchError() {}
 
   // 在 App 类中的 render() 函数没有实际作用
   // 请勿修改此函数
-  render () {
+  render() {
     return (
       <Provider store={store}>
-        <Index />
+        <Home />
       </Provider>
     )
   }
