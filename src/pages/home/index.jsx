@@ -44,8 +44,8 @@ export default class Home extends Component {
       }
     })
     this.setState({ current: value })
-    const currRef = this[`${tab}Ref`]
-    currRef.initData && currRef.initData()
+    // const currRef = this[`${tab}Ref`]
+    // currRef.initData && currRef.initData()
   }
 
   componentWillMount() {}
@@ -66,7 +66,7 @@ export default class Home extends Component {
         return (
           <AtTabsPane key={`${index}-${item.tab}`} current={current} index={item.index} className={styles.panel}>
             {/* 使用createRef创建的ref在1.3.9版本下获取的current都是null */}
-            <Topics tab={item.tab} ref={refDom => (this[`${item.tab}Ref`] = refDom)} />
+            <Topics ownTab={item.tab} ref={refDom => (this[`${item.tab}Ref`] = refDom)} />
           </AtTabsPane>
         )
       })

@@ -44,7 +44,7 @@ export default {
         let topics = state.data[tab].list
         data = topics.concat(data)
       }
-      console.log('store - tabData: ', state.data)
+      // console.log('store - tabData: ', state.data)
       return {
         ...state,
         data: { ...state.data, ...{ [tab]: { list: data, page } } }

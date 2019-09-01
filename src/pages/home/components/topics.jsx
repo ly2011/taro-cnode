@@ -51,7 +51,7 @@ class Topics extends Component {
     }, 2000)
   }
   onEndReached = () => {
-    const { data, tab } = this.props
+    const { data, ownTab: tab } = this.props
     const { page } = data[tab]
     return this.loadData(page + 1, tab)
   }
@@ -59,15 +59,19 @@ class Topics extends Component {
     console.log('我被点击了')
   }
   initData = async () => {
-    const { data, tab } = this.props
+    const { data, ownTab: tab } = this.props
     const { page } = data[tab]
     this.loadData(page, tab)
   }
   componentDidMount() {
+    // const { ownTab } = this.props
+    // console.log('mounted...', ownTab)
     this.initData()
   }
   render() {
-    const { data, tab, effects } = this.props
+    const { data, ownTab: tab, effects } = this.props
+    if (!tab) return null
+    // console.log('topics - data: ', tab, data)
     const topics = data[tab].list || []
     const { status } = this.state
 
