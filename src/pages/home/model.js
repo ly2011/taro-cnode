@@ -53,16 +53,22 @@ export default {
   },
   effects: {
     *fetchTopics({ payload: { tab, page = 1, limit = 10 }, callback }, { call, put }) {
-      const data = yield call(getTopicByTabName, { tab, page, limit })
-      yield put({
-        type: 'tabData',
-        payload: {
-          tab,
-          data: data.data,
-          page: +page
+      try {
+        const data = yield call(getTopicByTabName, { tab, page, limit })
+        if (data.success) {
+          yield put({
+            type: 'tabData',
+            payload: {
+              tab,
+              data: data.data,
+              page: +page
+            }
+          })
         }
-      })
-      callback && callback(!data.success, data.data)
+        callback && callback(!data.success, data.data)
+      } catch (error) {
+        callback && callback(error, null)
+      }
     }
   }
 }

@@ -8,7 +8,8 @@ import styles from '../index.module.scss'
 
 @connect(({ home, loading }) => ({
   ...home,
-  ...loading
+  // ...loading,
+  isLoad: loading.effects['home/fetchTopics']
 }))
 class Topics extends Component {
   constructor(props) {
@@ -69,7 +70,7 @@ class Topics extends Component {
     this.initData()
   }
   render() {
-    const { data, ownTab: tab, effects } = this.props
+    const { data, ownTab: tab } = this.props
     if (!tab) return null
     const topics = data[tab].list || []
     const { status } = this.state
