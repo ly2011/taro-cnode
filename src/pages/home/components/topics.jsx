@@ -14,8 +14,7 @@ class Topics extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      status: 'loading',
-      currentPage: 1
+      status: 'loading'
     }
   }
   loadData = async (page = 1, tab = '') => {
@@ -46,32 +45,32 @@ class Topics extends Component {
     this.setState({
       status: 'loading'
     })
-    setTimeout(() => {
-      this.setState({ status: 'noMore' })
-    }, 2000)
+    this.loadMore()
   }
   onEndReached = () => {
-    const { data, ownTab: tab } = this.props
-    const { page } = data[tab]
-    return this.loadData(page + 1, tab)
+    this.loadMore()
   }
   onItemPressed = (title, content) => {
     console.log('我被点击了')
   }
+  // 加载更多
+  loadMore = () => {
+    const { data, ownTab: tab } = this.props
+    const { page } = data[tab]
+    this.loadData(page + 1, tab)
+  }
+  // 初始化数据
   initData = async () => {
     const { data, ownTab: tab } = this.props
     const { page } = data[tab]
     this.loadData(page, tab)
   }
   componentDidMount() {
-    // const { ownTab } = this.props
-    // console.log('mounted...', ownTab)
     this.initData()
   }
   render() {
     const { data, ownTab: tab, effects } = this.props
     if (!tab) return null
-    // console.log('topics - data: ', tab, data)
     const topics = data[tab].list || []
     const { status } = this.state
 
